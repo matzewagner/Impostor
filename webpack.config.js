@@ -7,8 +7,8 @@ module.exports = {
   entry: './js/index.js',
   output: {
     filename: 'index.js',
-    path: path.join(__dirname, '/dist'),
-    publicPath: '/dist',
+    path: path.join(__dirname, '/build'),
+    publicPath: '/build',
   },
   // devServer: {
   //   contentBase: '',
