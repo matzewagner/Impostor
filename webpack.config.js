@@ -4,15 +4,12 @@ const webpack = require('webpack');
 module.exports = {
   // this is from were webpack starts looking for files
   context: path.join(__dirname, '/app'),
-  entry: './js/index.js',
+  entry: './client/js/index.js',
   output: {
     filename: 'index.js',
     path: path.join(__dirname, '/build'),
     publicPath: '/build',
   },
-  // devServer: {
-  //   contentBase: '',
-  // },
   resolve: {
     /**
      * find 'import' and 'require' references

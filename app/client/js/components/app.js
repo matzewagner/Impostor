@@ -4,7 +4,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>React sort of working or what?</h1>
+        <h1>Reactor sort of working or what?</h1>
       </div>
     );
   }
