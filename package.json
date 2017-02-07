@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --env development"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "webpack-dev-server": "^2.3.0"
   },
   "dependencies": {
+    "express": "^4.14.1",
     "path": "^0.12.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"

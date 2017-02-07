@@ -7,8 +7,12 @@ module.exports = {
   entry: './js/index.js',
   output: {
     filename: 'index.js',
-    path: path.join(__dirname, '/build'),
+    path: path.join(__dirname, '/dist'),
+    publicPath: '/dist',
   },
+  // devServer: {
+  //   contentBase: '',
+  // },
   resolve: {
     /**
      * find 'import' and 'require' references
