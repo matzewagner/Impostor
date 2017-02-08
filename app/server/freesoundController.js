@@ -1,5 +1,5 @@
 const request = require('request');
-const AudioSource = require('audiosource');
+const source = require('audio-source');
 
 const clientID = 'swwwrpFUO3In7BtmIN6j';
 const apiKey = 'ryowJnmxYqckzDz7DO3lbqKHhJMbUJiHubG030C5';
@@ -17,12 +17,12 @@ let src;
 
 const freesoundController = {
   authorize: (req, res, next) => {
+    console.log('redirecting ...');
     res.redirect(requestFreesoundAccessURI);
-    // console.log('redirecting ...');
     next();
   },
   setToken: (req, res, next) => {
-    // console.log('printing code from oAuth(): ', req.query.code);
+    console.log('printing code from oAuth(): ', req.query.code);
     const tokenURI = `${requestAccessTokenURI}?client_id=${clientID}&client_secret=${apiKey}&grant_type=authorization_code&code=${req.query.code}`;
 
     request.post(tokenURI, (err, response, body) => {
@@ -46,21 +46,25 @@ const freesoundController = {
   getSound: (req, res, next) => {
     const soundURI = data.previews['preview-hq-mp3'];
     // const soundURI = data.download;
-    src = new AudioSource({
-      context: context,
-      url: soundURI,
-    });
+    // src = new AudioSource({
+    //   context: context,
+    //   url: soundURI,
+    // });
 
-    src.load(null, (err, src) => {
-      if (err) console.log(err);
-      console.log('source: ', src);
-    });
+    // src.load(null, (err, src) => {
+    //   if (err) console.log(err);
+    //   console.log('source: ', src);
+    // });
 
     // console.log('soundURI: ', soundURI);
-    // request({ url: soundURI, headers: { Authorization: auth } }, (err, res, body) => {
-    //   if (err) console.log(err);
-    //   console.log('are we getting samples? ', res);
-    // });
+    request({ url: soundURI, headers: { Authorization: auth } }, (err, res, body) => {
+      if (err) console.log(err);
+      let samples;
+      source(res).pipe(samples);
+      // let chunk = read();
+      // read.end();
+      console.log('are we getting samples? ', res);
+    });
     next();
   },
 };

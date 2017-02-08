@@ -7,6 +7,13 @@ const app = express();
 
 app.use(bodyparser.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  console.log('check');
+  next();
+});
+
 app.get('/fs', freesound.authorize);
 
 /**

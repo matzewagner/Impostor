@@ -5,8 +5,8 @@ class App extends Component {
   render() {
     return (
       <div className="mixerClass">
-        <h1>Reactor sort of working or not?</h1>
-        <Mixer/>
+        <h1>freesound sequencer</h1>
+        <Mixer />
       </div>
     );
   }

@@ -10,6 +10,7 @@ module.exports = {
     path: path.join(__dirname, '/build'),
     publicPath: '/build',
   },
+  devtool: '#sourcemap',
   resolve: {
     /**
      * find 'import' and 'require' references
