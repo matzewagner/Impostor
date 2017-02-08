@@ -21,6 +21,7 @@
     "webpack-dev-server": "^2.3.0"
   },
   "dependencies": {
+    "audiosource": "^2.0.7",
     "body-parser": "^1.16.0",
     "express": "^4.14.1",
     "path": "^0.12.7",
