@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import InputForm from './inputForm.jsx';
 
-const Track = () => {
+const Track = (props) => {
   return (
-    <div>
+    <div className="formClass">
+      <InputForm {...props}/>
     </div>
   );
 }

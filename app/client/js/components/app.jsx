@@ -4,7 +4,7 @@ import Mixer from './mixer.jsx';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="mixerClass">
         <h1>Reactor sort of working or not?</h1>
         <Mixer/>
       </div>
