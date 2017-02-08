@@ -7,15 +7,15 @@ const app = express();
 
 app.use(bodyparser.urlencoded({ extended: true }));
 
-app.get('/check', (req, res, next) => {
-  freesound.getData(req, res, next);
-  // console.log('hi from server', res);
-  // res.redirect('localhost:8080');
-});
+app.get('/freesound', freesound.authorize);
 
-app.get('/redirect', (req, res, next) => {
-  console.log('reached redirect', req.query);
-  freesound.oAuth(req.query.code);
+/**
+ * /oauth-redirect is set as a redirect_uri on freesound.org
+ * in the api key settings
+ */
+app.get('/oauth-redirect', (req, res, next) => {
+  console.log('redirecting ...');
+  freesound.setToken(req.query.code);
 });
 
 app.listen(3000, () => {
