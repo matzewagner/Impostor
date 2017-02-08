@@ -12,19 +12,20 @@ let accessToken;
 const freesoundController = {
   authorize: (req, res, next) => {
     res.redirect(requestFreesoundAccessURI);
+    console.log('redirecting ...');
     next();
   },
-  setToken: (code) => {
-    console.log('printing code from oAuth(): ', code);
-    const tokenURI = `${requestAccessTokenURI}?client_id=${clientID}&client_secret=${apiKey}&grant_type=authorization_code&code=${code}`;
+  setToken: (req, res, next) => {
+    console.log('printing code from oAuth(): ', req.query.code);
+    const tokenURI = `${requestAccessTokenURI}?client_id=${clientID}&client_secret=${apiKey}&grant_type=authorization_code&code=${req.query.code}`;
 
     request.post(tokenURI, (err, res, body) => {
       console.log('getting access_token...', body);
       accessToken = body.access_token;
-      getData();
+      next();
     });
   },
-  getData: () => {
+  getData: (req, res, next) => {
     console.log('queryUrl: ', query);
     console.log('getting data ...');
     const p1 = new Promise((resolve, reject) => {
@@ -33,6 +34,7 @@ const freesoundController = {
         console.log('freesound response body: ', JSON.parse(body));
       });
     });
+    next();
   },
 };
 
