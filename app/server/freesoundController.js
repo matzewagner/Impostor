@@ -5,7 +5,7 @@ const clientID = 'swwwrpFUO3In7BtmIN6j';
 const apiKey = 'ryowJnmxYqckzDz7DO3lbqKHhJMbUJiHubG030C5';
 const baseURI = 'http://www.freesound.org/apiv2';
 const options = '/sounds/8810';
-const requestFreesoundAccessURI = `https://www.freesound.org/apiv2/oauth2/authorize/?client_id=${clientID}&response_type=code`;
+const requestFreesoundAccessURI = `https://www.freesound.org/apiv2/oauth2/authorize/?client_id=swwwrpFUO3In7BtmIN6j&response_type=code`;
 const requestAccessTokenURI = 'https://www.freesound.org/apiv2/oauth2/access_token/';
 const query = `${baseURI}${options}`;
 
@@ -16,10 +16,9 @@ let data;
 let src;
 
 const freesoundController = {
-  authorize: (req, res, next) => {
+  authorize: (req, res) => {
     console.log('redirecting ...');
-    res.redirect(requestFreesoundAccessURI);
-    next();
+    return res.redirect('https://www.google.com');
   },
   setToken: (req, res, next) => {
     console.log('printing code from oAuth(): ', req.query.code);
@@ -60,10 +59,10 @@ const freesoundController = {
     request({ url: soundURI, headers: { Authorization: auth } }, (err, res, body) => {
       if (err) console.log(err);
       let samples;
-      source(res).pipe(samples);
+      // source(res).pipe(samples);
       // let chunk = read();
       // read.end();
-      console.log('are we getting samples? ', res);
+      // console.log('are we getting samples? ', res);
     });
     next();
   },
