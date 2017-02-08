@@ -4,9 +4,9 @@ const webpack = require('webpack');
 module.exports = {
   // this is from were webpack starts looking for files
   context: path.join(__dirname, '/app'),
-  entry: './client/js/index.js',
+  entry: './client/js/index.jsx',
   output: {
-    filename: 'index.js',
+    filename: 'index.jsx',
     path: path.join(__dirname, '/build'),
     publicPath: '/build',
   },
