@@ -7,7 +7,7 @@ const app = express();
 
 app.use(bodyparser.urlencoded({ extended: true }));
 
-app.get('/freesound', freesound.authorize);
+app.get('/fs', freesound.authorize);
 
 /**
  * /oauth-redirect is set as a redirect_uri on freesound.org
