@@ -16,7 +16,7 @@ class Mixer extends Component {
   constructor() {
     super();
     this.state = {
-      numTracks: 1,
+      numTracks: 0,
       query: null,
       counter: 0,
       activeSteps: {},
@@ -38,7 +38,11 @@ class Mixer extends Component {
     this.setState({ numTracks: this.state.numTracks + 1});
   };
   removeTrack() {
-    if (this.state.numTracks > 0) this.setState({ numTracks: this.state.numTracks - 1});
+    if (this.state.numTracks > 0) {
+      this.setState({numTracks: this.state.numTracks - 1});
+    } else { 
+      this.setState({activeSteps: {}});
+    }
   };
   inputHandle(e) {
     console.log('getting form data: ', e.target.elements.freesoundQuery.value);
@@ -51,7 +55,7 @@ class Mixer extends Component {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', '/fs');
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onload = () => { console.log('check') };
+    xhr.onload = () => {  };
     xhr.send();
   };
   incrementCounter() {
@@ -109,7 +113,7 @@ class Mixer extends Component {
 
       return (
         <div>
-          <h1><a href="#" className="plus" onClick={this.addTrack}>+</a><a href="#" className="plus" onClick={this.removeTrack}> -- </a></h1>
+          <h1><a href="#" className="plus" onClick={this.addTrack}> + </a><a href="#" className="plus" onClick={this.removeTrack}> -- </a></h1>
           <div className="trackClass">
             {tracks}
           </div>
