@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 
 const Step = (props) => {
     // if step is active
-    if (props.stepKey === props.count) {
+    if ((props.stepKey%16) === props.count) {
       // if step is currently selected, trigger
       if (props.steps[props.stepKey]) {
         props.trig(props.stepKey);
         return <div
                   className="triggerClass"
                   onClick={props.select.bind(null, props.stepKey)}>
+                  {/*{props.stepKey}*/}
                 </div>;
       } else {
         // if step is not selected,
@@ -25,13 +26,13 @@ const Step = (props) => {
         return <div
                   className="selectedClass"
                   onClick={props.select.bind(null, props.stepKey)}>
-                  {}
+                  {/*{props.stepKey}*/}
                 </div>;
       } else {
         return <div
                   className="stepClass"
                   onClick={props.select.bind(null, props.stepKey)}>
-                  {}
+                  {/*{props.stepKey}*/}
                 </div>;
       }
     }

@@ -12,6 +12,18 @@ h1 {
   height: 100%;
 }
 
+a {
+  color: dodgerblue;
+  font-size: 60;
+  text-decoration: none;
+}
+
+a:hover {
+  color: pink;
+  font-size: 60;
+  text-decoration: none;
+}
+
 .trackClass {
   /*display: inline-block;*/
   /*border: 1px solid olive;*/
@@ -19,6 +31,10 @@ h1 {
   margin-left: 75px;
   padding-bottom: 5px;
   /*height: 60px;*/
+}
+
+.trackWrapper {
+  border: 5px solid red;
 }
 
 .formClass {
@@ -50,6 +66,7 @@ h1 {
   outline: none;
   border: none;
   margin-top: 5px;
+  margin-bottom: 20px;
 }
 
 .playButton a:hover {
@@ -92,7 +109,7 @@ h1 {
   float: left;
   width: 25px;
   height: 25px;
-  border: 1px solid silver;
+  border: 1px solid darkorchid;
   border-radius: 2px;
   background-color: red;
 }

@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import Step from './step.jsx';
 
 const Sequencer = (props) => {
-  const stepList = [...Array(16)].map((el, i) => {
+  let stepList = [...Array(16)].map((el, i) => {
      if (i%3 === 0) {
       return <Step
               key={i}
-              stepKey={i}
+              trackKey={props.trackKey}
+              stepKey={i + (props.trackKey * 16)}
               count={props.count}
               select={props.selectHandle}
               steps={props.steps}
@@ -15,7 +16,8 @@ const Sequencer = (props) => {
      } else {
       return <Step
               key={i}
-              stepKey={i}
+              trackKey={props.trackKey}
+              stepKey={i + (props.trackKey * 16)}
               count={props.count}
               select={props.selectHandle}
               steps={props.steps}

@@ -16,6 +16,7 @@ class Mixer extends Component {
   constructor() {
     super();
     this.state = {
+      numTracks: 1,
       query: null,
       counter: 0,
       activeSteps: {},
@@ -24,12 +25,20 @@ class Mixer extends Component {
     this.playHandle = this.playHandle.bind(this);
     this.selectStepHandle = this.selectStepHandle.bind(this);
     this.triggerHandle = this.triggerHandle.bind(this);
+    this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   };
   getInitialState() {
 
   };
   searchFreesound() {
 
+  };
+  addTrack() {
+    this.setState({ numTracks: this.state.numTracks + 1});
+  };
+  removeTrack() {
+    if (this.state.numTracks > 0) this.setState({ numTracks: this.state.numTracks - 1});
   };
   inputHandle(e) {
     console.log('getting form data: ', e.target.elements.freesoundQuery.value);
@@ -60,13 +69,19 @@ class Mixer extends Component {
     // console.log(obj);
     this.setState({ activeSteps: obj });
   };
+  componentWillMount() {
+    let self = this;
+    setInterval(function() {
+      self.incrementCounter();
+    }, 125);
+  };
   triggerHandle(stepKey) {
-    console.log('trigger!!!');
+    // console.log('trigger!!!');
     this.sound();
   };
   playHandle(e) {
       // url: 'http://www.freesound.org/data/previews/8/8810_2518-hq.mp3',
-    console.log('playing');
+    // console.log('playing');
     this.sound();
     this.incrementCounter();
   };
@@ -78,24 +93,28 @@ class Mixer extends Component {
     osc.stop(ctx.currentTime + .1);
   };
   render() {
-    return (
-      <div className="trackClass">
-        <Track
-          inputHandle={this.inputHandle}
-          playHandle={this.playHandle}
-          selectHandle={this.selectStepHandle}
-          trigHandle={this.triggerHandle}
-          count={this.state.counter}
-          steps={this.state.activeSteps}
-        />
-      </div>
-    );
-  };
-  componentWillMount() {
-    let self = this;
-    setInterval(function() {
-      self.incrementCounter();
-    }, 150);
+    let tracks = [...Array(this.state.numTracks)].map((el, i) => {
+        return <Track
+                  className="trackWrapper"
+                  key={i}
+                  trackKey={i}
+                  inputHandle={this.inputHandle}
+                  playHandle={this.playHandle}
+                  selectHandle={this.selectStepHandle}
+                  trigHandle={this.triggerHandle}
+                  count={this.state.counter}
+                  steps={this.state.activeSteps}
+                  />
+      });
+
+      return (
+        <div>
+          <h1><a href="#" className="plus" onClick={this.addTrack}>+</a><a href="#" className="plus" onClick={this.removeTrack}> -- </a></h1>
+          <div className="trackClass">
+            {tracks}
+          </div>
+        </div>
+      );
   };
 }
 
