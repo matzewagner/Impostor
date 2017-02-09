@@ -81,7 +81,7 @@ class Mixer extends Component {
   };
   triggerHandle(stepKey) {
     // console.log('trigger!!!');
-    this.sound();
+    this.sound(stepKey);
   };
   playHandle(e) {
       // url: 'http://www.freesound.org/data/previews/8/8810_2518-hq.mp3',
@@ -89,12 +89,52 @@ class Mixer extends Component {
     this.sound();
     this.incrementCounter();
   };
-  sound() {
+  sound(stepKey) {
     let osc = ctx.createOscillator();
+    let oscRand = ctx.createOscillator();
+    let kick = ctx.createOscillator();
+    let square = ctx.createOscillator();
+    
+    const duration = ctx.sampleRate * 0.05;
+    const buf = ctx.createBuffer(1, duration, ctx.sampleRate);
+    const fillBuf = buf.getChannelData(0);
+    for (let i = 0; i < duration; i += 1) {
+      fillBuf[i] = (Math.random() * 2) - 1;
+    }
+    const playBuf = ctx.createBufferSource();
+    playBuf.buffer = buf;
+    playBuf.loop = false;
+
     osc.frequency.value = 330;
+    oscRand.frequency.value = Math.random() * 1000 + 50;
+    kick.frequency.value = 63;
+    square.frequency.value = Math.random() * 20 + 100; 
+    square.type = 'square';
+
     osc.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + .1);
+    oscRand.connect(ctx.destination);
+    kick.connect(ctx.destination);
+    square.connect(ctx.destination);
+    playBuf.connect(ctx.destination);
+
+
+    if (stepKey < 16) {
+      osc.start();
+      osc.stop(ctx.currentTime + .1);
+    } else if (stepKey >= 16 && stepKey < 32) {
+      oscRand.start();
+      oscRand.stop(ctx.currentTime + .1);
+    } else if (stepKey >= 32 && stepKey < 48) {
+      kick.start();
+      kick.stop(ctx.currentTime + .1);
+    } else if (stepKey >= 48 && stepKey < 64) {
+      playBuf.start();      
+    } else if (stepKey >= 64 && stepKey < 80) {
+      square.start();
+      square.stop(ctx.currentTime + .15);
+    }
+
+
   };
   render() {
     let tracks = [...Array(this.state.numTracks)].map((el, i) => {
