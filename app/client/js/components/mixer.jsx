@@ -3,6 +3,7 @@ import Track from './track.jsx';
 const AudioSource = require('audiosource');
 
 const ctx = new AudioContext();
+const analyzer = ctx.createAnalyser();
 
 const clientID = 'swwwrpFUO3In7BtmIN6j';
 const apiKey = 'ryowJnmxYqckzDz7DO3lbqKHhJMbUJiHubG030C5';
@@ -16,7 +17,7 @@ class Mixer extends Component {
   constructor() {
     super();
     this.state = {
-      numTracks: 0,
+      numTracks: 1,
       query: null,
       counter: 0,
       activeSteps: {},
@@ -112,6 +113,7 @@ class Mixer extends Component {
     square.type = 'square';
 
     osc.connect(ctx.destination);
+    osc.connect(analyzer);
     oscRand.connect(ctx.destination);
     kick.connect(ctx.destination);
     square.connect(ctx.destination);
@@ -134,6 +136,10 @@ class Mixer extends Component {
       square.stop(ctx.currentTime + .15);
     }
 
+    let canvas = document.getElementsByClassName('myCanvas');
+    let ctx = canvas.getContext('2d');
+    let dataArr = new Float32Array(analyzer.fftSize);
+    analyzer.getFloatTimeDomainData(dataArr);
 
   };
   render() {

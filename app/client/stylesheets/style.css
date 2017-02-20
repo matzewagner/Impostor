@@ -79,9 +79,9 @@ a:hover {
 }
 
 .seqClass {
-  float: right;
-  margin-right: 30%;
-  margin-top: -20px;
+  float: left;
+  margin-left: 200px;
+  margin-top: -65px;
   border: 1px solid pink;
 }
 
@@ -127,4 +127,14 @@ a:hover {
   border: 1px solid silver;
   border-radius: 2px;
   background-color: rosybrown;
+}
+
+.oscScope {
+  float: left;
+  margin-top: -70px;
+  margin-left: 650px; 
+  border: 1px solid grey;
+  width: 100px;
+  height: 40px;
+  border-radius: 3px;
 }
