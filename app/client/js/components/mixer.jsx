@@ -4,7 +4,6 @@ const AudioSource = require('audiosource');
 
 const ctx = new AudioContext();
 const analyzer = ctx.createAnalyser();
-console.log(ctx);
 
 const clientID = 'swwwrpFUO3In7BtmIN6j';
 const apiKey = 'ryowJnmxYqckzDz7DO3lbqKHhJMbUJiHubG030C5';
@@ -137,10 +136,10 @@ class Mixer extends Component {
       square.stop(ctx.currentTime + .15);
     }
 
-    let canvas = document.getElementsByClassName('myCanvas');
-    let canvctx = canvas.getContext('2d');
-    let dataArr = new Float32Array(analyzer.fftSize);
-    analyzer.getFloatTimeDomainData(dataArr);
+    // let canvas = document.getElementsByClassName('myCanvas');
+    // let canvctx = canvas.getContext('2d');
+    // let dataArr = new Float32Array(analyzer.fftSize);
+    // analyzer.getFloatTimeDomainData(dataArr);
 
   };
   render() {

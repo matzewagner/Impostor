@@ -10,7 +10,7 @@ const Track = (props) => {
       <InputForm className="formClass" {...props}/>
       <Player {...props}/>
       <Sequencer {...props}/>
-      <OscScope {...props}/>
+      {/*<OscScope {...props}/>*/}
     </div>
   );
 };
