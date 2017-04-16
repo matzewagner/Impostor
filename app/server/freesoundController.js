@@ -18,7 +18,7 @@ let src;
 const freesoundController = {
   authorize: (req, res) => {
     console.log('redirecting ...');
-    return res.redirect('https://www.google.com');
+    return res.redirect('https://www.stern.de');
   },
   setToken: (req, res, next) => {
     console.log('printing code from oAuth(): ', req.query.code);

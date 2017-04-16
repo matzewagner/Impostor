@@ -5,11 +5,11 @@ const AudioSource = require('audiosource');
 const ctx = new AudioContext();
 const analyzer = ctx.createAnalyser();
 
-const clientID = 'swwwrpFUO3In7BtmIN6j';
-const apiKey = 'ryowJnmxYqckzDz7DO3lbqKHhJMbUJiHubG030C5';
+const ID = 'swwwrpFUO3In7BtmIN6j';
+const KEY = 'ryowJnmxYqckzDz7DO3lbqKHhJMbUJiHubG030C5';
 const baseURI = 'http://www.freesound.org/apiv2';
 const options = '/sounds/8810';
-const requestFreesoundAccessURI = `https://www.freesound.org/apiv2/oauth2/authorize/?client_id=${clientID}&response_type=code`;
+const requestFreesoundAccessURI = `https://www.freesound.org/apiv2/oauth2/authorize/?client_id=${ID}&response_type=code`;
 const requestAccessTokenURI = 'https://www.freesound.org/apiv2/oauth2/access_token/';
 const query = `${baseURI}${options}`;
 
@@ -52,7 +52,9 @@ class Mixer extends Component {
     this.freesoundQuery();
   };
   freesoundQuery() {
-    const freesoundURI = 'http://localhost:3000/fs';
+    console.log('check');
+    // const freesoundURI = 'http://localhost:3000/fs';
+    const freesoundURI = 'https://www.bild.de';
     let xhr = new XMLHttpRequest();
     xhr.open('GET', '/fs');
     xhr.setRequestHeader("Content-Type", "application/json");
